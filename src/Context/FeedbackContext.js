@@ -1,3 +1,4 @@
+import React from 'react';
 import { createContext, useState, useEffect } from "react";
 
 const FeedbackContext = createContext();
@@ -5,7 +6,7 @@ const FeedbackContext = createContext();
 export const FeedbackProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [feedback, setFeedback] = useState([]);
-  const [FeedbackEdit, setFeedbackEdit] = useState({
+  const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
     edit: false,
   });
@@ -76,7 +77,7 @@ export const FeedbackProvider = ({ children }) => {
     <FeedbackContext.Provider
       value={{
         feedback,
-        FeedbackEdit,
+        feedbackEdit,
         isLoading,
         deleteFeedback,
         addFeedback,

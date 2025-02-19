@@ -1,15 +1,19 @@
+import React from 'react';
 import PropTypes from "prop-types";
 
 function Header({ text, bgColor, textColor }) {
   const headerStyles = {
-    backgroundColor: bgColor,
+    backgroundColor: 'transparent',
     color: textColor,
+    backdropFilter: 'blur(10px)',
+    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+    boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
   };
 
   return (
     <header style={headerStyles}>
       <div className="container">
-        <h2>{text}</h2> 
+        <h2 style={{ fontSize: '28px', fontWeight: '600' }}>{text}</h2>
       </div>
     </header>
   );
@@ -17,8 +21,7 @@ function Header({ text, bgColor, textColor }) {
 
 Header.defaultProps = {
   text: "Feedback UI",
-  bgColor: "rgba(0, 0, 0, 0.4",
-  textColor: "#ff6a95",
+  textColor: "#fff",
 };
 
 Header.propTypes = {

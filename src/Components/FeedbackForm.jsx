@@ -8,29 +8,29 @@ import FeedbackContext from "../Context/FeedbackContext";
 function FeedbackForm() {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
-  const [btnDisabled, setBtnDisabled] = useState(true); 
+  const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
 
-  const { addFeedback, FeedbackEdit, updateFeedback } =
+  const { addFeedback, feedbackEdit, updateFeedback } =
     useContext(FeedbackContext);
 
   useEffect(() => {
-    if (FeedbackEdit.edit === true) {
+    if (feedbackEdit.edit === true) {
       setBtnDisabled(false);
-      setText(FeedbackEdit.item.text);
-      setRating(FeedbackEdit.item.rating);
+      setText(feedbackEdit.item.text);
+      setRating(feedbackEdit.item.rating);
     }
-  }, [FeedbackEdit]);
+  }, [feedbackEdit]);
 
   const handleTextChange = (e) => {
     if (text === "") {
       setBtnDisabled(true);
-      setMessage(null);
+      setMessage("");
     } else if (text !== "" && text.trim().length <= 10) {
       setMessage("Text must be at least 10 characters!");
       setBtnDisabled(true);
     } else {
-      setMessage(null);
+      setMessage("");
       setBtnDisabled(false);
     }
 
@@ -45,8 +45,8 @@ function FeedbackForm() {
         rating,
       };
 
-      if (FeedbackEdit.edit === true) {
-        updateFeedback(FeedbackEdit.item.id, newFeedback);
+      if (feedbackEdit.edit === true) {
+        updateFeedback(feedbackEdit.item.id, newFeedback);
       } else {
         addFeedback(newFeedback);
       }
